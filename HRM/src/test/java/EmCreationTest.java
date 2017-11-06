@@ -20,10 +20,6 @@ public class EmCreationTest {
     public void setUp() throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void EmCreationTest() {
         wd.get("http://local.school.portnov.com:9595/symfony/web/index.php/auth/login");
         wd.findElement(By.id("txtUsername")).click();
         wd.findElement(By.id("txtUsername")).clear();
@@ -32,6 +28,10 @@ public class EmCreationTest {
         wd.findElement(By.id("txtPassword")).clear();
         wd.findElement(By.id("txtPassword")).sendKeys("password");
         wd.findElement(By.id("btnLogin")).click();
+    }
+    
+    @Test
+    public void testEmCreation() {
         wd.findElement(By.id("btnAdd")).click();
         wd.findElement(By.id("firstName")).click();
         wd.findElement(By.id("firstName")).clear();
@@ -46,14 +46,5 @@ public class EmCreationTest {
     @AfterMethod
     public void tearDown() {
         wd.quit();
-    }
-    
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
     }
 }
