@@ -1,4 +1,4 @@
-package popov.sqa;
+package popov.sqa.model;
 
 public class EmData {
    private final String firstName;
