@@ -1,4 +1,4 @@
-package com.popov.sqa;
+package com.popov.sqa.model;
 
 public class Group {
    public String name;

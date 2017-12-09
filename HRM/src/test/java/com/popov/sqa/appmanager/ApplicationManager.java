@@ -1,25 +1,23 @@
-package com.popov.sqa;
+package com.popov.sqa.appmanager;
 
+import com.popov.sqa.model.Contact;
+import com.popov.sqa.model.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
+
    ChromeDriver wd;
 
-   @BeforeMethod
-   public void setUp() throws Exception {
+   public void init() {
       wd = new ChromeDriver();
       wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
       openHomePage();
       login();
    }
 
-   @AfterMethod
-   public void tearDown() {
+   public void stop() {
       wd.quit();
    }
 
@@ -87,7 +85,6 @@ public class TestBase {
       wd.findElement(By.name("submit")).click();
    }
 
-
    public void gotoHomePage() {
       wd.findElement(By.linkText("home")).click();
    }
@@ -96,18 +93,16 @@ public class TestBase {
       wd.findElement(By.name("selected[]")).click();
    }
 
-   void deleteContact() {
+   public void deleteContact() {
       wd.findElement(By.xpath("//div[2]/input")).click();
       wd.switchTo().alert().accept();
    }
 
-   void chooseGroup() {
+   public void chooseGroup() {
       wd.findElement(By.name("selected[]")).click();
    }
 
-   void deleteGroup() {
+   public void deleteGroup() {
       wd.findElement(By.name("delete")).click();
    }
-
-
 }
